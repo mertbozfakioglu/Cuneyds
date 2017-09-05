@@ -51,6 +51,8 @@ class Simulator(object):
         print cuneyd
         cuneyd.set(x,y,t,N_ID,p)
         print cuneyd
+    def print_cuneyd(self, ID):
+        return next(cuneyd for cuneyd in self.cuneyds if cuneyd.ID == ID)
 
     def draw_cuneyd(self,cuneyd,color):
     	x = cuneyd.x + self.w/2
@@ -76,7 +78,10 @@ class Simulator(object):
 	thickness = 0
 	for i in range(len(self.cuneyds)):
 	    for point in self.cuneyds[i].points:
-		pygame.draw.circle(self.screen, self.colors[i%len(self.colors)], (point[0],point[1]), r, thickness)
+                x = point[0] + self.w // 2
+                y = self.h // 2 - point[1]
+                
+		pygame.draw.circle(self.screen, self.colors[i%len(self.colors)], (x,y), r, thickness)
 
     def draw_grid(self):
         for xi in xrange(-self.w//2, self.w//2, self.grid_step):

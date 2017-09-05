@@ -6,7 +6,7 @@ sim = Simulator(width = 1024, height = 720, background_color = (225,225,225))
 app = Flask(__name__)
 
 sim.update_screen()
-
+c_id = 0
 @app.route('/')
 def hello_world():
     return "Congratulations. You have reached the Cuneyds Server"
@@ -21,14 +21,30 @@ def add_point():
 
 @app.route('/create_cuneyd', methods = ["POST"])
 def create_cuneyd():
-    sim.create_cuneyd(p=0.2)
+    global c_id
+    ups = request.json
+    if not ups:
+        ups = dict()
+    if not ups.get('ID', False):
+        ups['ID'] = c_id
+        c_id += 1
+    sim.create_cuneyd(ups.get('x', 0),
+                      ups.get('y', 0),
+                      ups.get('t', 0),
+                      ups.get('ID', c_id),
+                      ups.get('p', 0.5))
     sim.update_screen()
-    return "NYI"
+    return sim.print_cuneyd(ups['ID'])
 
 @app.route('/update_cuneyd', methods = ["POST"])
 def update_cuneyd():
-    print request.json
-    print request.json["ID"]
+    ups = request.json
+    sim.update_cuneyd(ups["ID"], ups.get('x',None), 
+                                 ups.get('y',None),
+                                 ups.get('t',None),
+                                 ups.get('N_ID', None),
+                                 ups.get('p', None))
+    sim.update_screen()
     return "NYI"
 
 @app.route('/update_point', methods = ["POST"])

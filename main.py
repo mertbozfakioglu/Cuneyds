@@ -13,11 +13,11 @@ sim.create_cuneyd(-120,-343,23,"bacanagin",0.7)
 
 baldiz = cuneyd.Cuneyd(260,254,2.7,"baldizin",0.2)
 sim.add_cuneyd(baldiz)
-baldiz.add_point(754,450,2,250)
-baldiz.add_point(746,453,2,200)
-baldiz.add_point(734,370,2,100)
-baldiz.add_point(772,465,2,100)
-baldiz.add_point(725,443,2,1)
+baldiz.add_point(154,250,2,250)
+baldiz.add_point(146,253,2,200)
+baldiz.add_point(134,170,2,100)
+baldiz.add_point(172,265,2,100)
+baldiz.add_point(125,243,2,1)
 
 print sim.cuneyds[0]
 print cuneyd.Cuneyd.id_list

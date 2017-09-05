@@ -7,7 +7,7 @@ class Cuneyd(object):
 	self.x = x
 	self.y = y
 	self.t = t
-	self.ID = ID
+	self.ID = str(ID)
 	self.p = p
 	self.id_list.append(ID)
 	self.points = []
