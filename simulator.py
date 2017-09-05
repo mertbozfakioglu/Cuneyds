@@ -77,7 +77,8 @@ class Simulator(object):
             for yi in xrange(-self.h//2, self.h//2, self.grid_step):
                 x = xi + self.w//2
                 y = yi + self.h//2
-                pygame.draw.circle(self.screen, (0,0,0), (x,y), 1, 1)
+                color = map(lambda a: (a < 128) * 255, self.background_color)
+                pygame.draw.circle(self.screen, color, (x,y), 1, 1)
         length = min(self.w, self.h) // 12
         a_length = length/6
         center = (self.w // 2, self.h // 2)

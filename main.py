@@ -2,7 +2,7 @@ import simulator
 import cuneyd
 import time
 
-sim = simulator.Simulator(background_color = (225,225,225))
+sim = simulator.Simulator(background_color = (210,210,210))
 sim.create_cuneyd(-100,200,3,"baban",0.8)
 sim.create_cuneyd(200,-150,1.6,"anan",1)
 sim.create_cuneyd(242,23,2.5,"kayinvaliden",0.2)
