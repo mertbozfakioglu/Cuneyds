@@ -1,2 +1,6 @@
 #compiled python scripts
 *.pyc
+
+#Vim swp swo files
+*.swp
+*.swo

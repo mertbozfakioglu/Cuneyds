@@ -46,6 +46,12 @@ class Simulator(object):
     def add_cuneyd(self,cuneyd):
     	self.cuneyds.append(cuneyd)
 
+    def update_cuneyd(self, ID, x = 0, y = 0, t = 0, N_ID = 0, p = 0.5):
+        cuneyd = next(cuneyd for cuneyd in self.cuneyds if cuneyd.ID == ID)
+        print cuneyd
+        cuneyd.set(x,y,t,N_ID,p)
+        print cuneyd
+
     def draw_cuneyd(self,cuneyd,color):
     	x = cuneyd.x + self.w/2
     	y = cuneyd.y + self.h/2
@@ -92,10 +98,11 @@ class Simulator(object):
         pygame.draw.line(self.screen, red, y_end, (y_end[0] + a_length * math.cos(th), y_end[1] + a_length * math.sin(th)),4)
         pygame.draw.line(self.screen, red, x_end, (x_end[0] - a_length * math.sin(th), x_end[1] - a_length * math.cos(th)),4)
         pygame.draw.line(self.screen, red, x_end, (x_end[0] - a_length * math.sin(th), x_end[1] + a_length * math.cos(th)),4)
+
     def legand(self):
     	y_pos = 0
     	for i in range(len(self.cuneyds)):
-            text = self.def_font.render('ID: '+self.cuneyds[i].ID, False, self.colors[i%len(self.colors)])
+            text = self.def_font.render('ID: '+str(self.cuneyds[i].ID), False, self.colors[i%len(self.colors)])
 	    self.screen.blit(text,(0,y_pos))
 	    y_pos+=20
             pos_str = str((self.cuneyds[i].x,self.cuneyds[i].y,self.cuneyds[i].t,self.cuneyds[i].p))

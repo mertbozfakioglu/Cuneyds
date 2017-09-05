@@ -5,6 +5,8 @@ from simulator import Simulator
 sim = Simulator(width = 1024, height = 720, background_color = (225,225,225))
 app = Flask(__name__)
 
+sim.update_screen()
+
 @app.route('/')
 def hello_world():
     return "Congratulations. You have reached the Cuneyds Server"
@@ -17,12 +19,15 @@ def health_check():
 def add_point():
     return "NYI"
 
-@app.route('/add_cuneyd', methods = ["POST"])
-def add_cuneyd():
+@app.route('/create_cuneyd', methods = ["POST"])
+def create_cuneyd():
+    sim.create_cuneyd(p=0.2)
+    sim.update_screen()
     return "NYI"
 
 @app.route('/update_cuneyd', methods = ["POST"])
 def update_cuneyd():
+    print request.json.ID
     return "NYI"
 
 @app.route('/update_point', methods = ["POST"])
