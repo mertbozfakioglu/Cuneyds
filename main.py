@@ -1,5 +1,6 @@
 import simulator
 import cuneyd
+import time
 
 sim = simulator.Simulator()
 sim.create_cuneyd(-100,200,3,"baban",0.8)
