@@ -1,4 +1,8 @@
 from flask import Flask, render_template, request
+
+from simulator import Simulator
+
+sim = Simulator(width = 1024, height = 720, background_color = (225,225,225))
 app = Flask(__name__)
 
 @app.route('/')
