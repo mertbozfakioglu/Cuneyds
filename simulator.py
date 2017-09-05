@@ -71,13 +71,26 @@ class Simulator(object):
 	for i in range(len(self.cuneyds)):
 	    for point in self.cuneyds[i].points:
 		pygame.draw.circle(self.screen, self.colors[i%len(self.colors)], (point[0],point[1]), r, thickness)
+
     def draw_grid(self):
         for xi in xrange(-self.w//2, self.w//2, self.grid_step):
             for yi in xrange(-self.h//2, self.h//2, self.grid_step):
                 x = xi + self.w//2
                 y = yi + self.h//2
                 pygame.draw.circle(self.screen, (0,0,0), (x,y), 1, 1)
-
+        length = min(self.w, self.h) // 12
+        a_length = length/6
+        center = (self.w // 2, self.h // 2)
+        y_end = (self.w // 2, self.h // 2 - length)
+        x_end = (self.w // 2 + length, self.h // 2)
+        red = (200, 0, 0)
+        th = math.pi / 3
+        pygame.draw.line(self.screen, red, center, y_end, 2)
+        pygame.draw.line(self.screen, red, center, x_end, 2)
+        pygame.draw.line(self.screen, red, y_end, (y_end[0] - a_length * math.cos(th), y_end[1] + a_length * math.sin(th)),4)
+        pygame.draw.line(self.screen, red, y_end, (y_end[0] + a_length * math.cos(th), y_end[1] + a_length * math.sin(th)),4)
+        pygame.draw.line(self.screen, red, x_end, (x_end[0] - a_length * math.sin(th), x_end[1] - a_length * math.cos(th)),4)
+        pygame.draw.line(self.screen, red, x_end, (x_end[0] - a_length * math.sin(th), x_end[1] + a_length * math.cos(th)),4)
     def legand(self):
     	y_pos = 0
     	for i in range(len(self.cuneyds)):
