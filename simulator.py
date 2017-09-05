@@ -48,15 +48,15 @@ class Simulator(object):
 
     def update_cuneyd(self, ID, x = None, y = None, t = None, N_ID = None, p = 0.5):
         cuneyd = next(cuneyd for cuneyd in self.cuneyds if cuneyd.ID == ID)
-        print cuneyd
         cuneyd.set(x,y,t,N_ID,p)
-        print cuneyd
+        return str(cuneyd)
+
     def print_cuneyd(self, ID):
-        return next(cuneyd for cuneyd in self.cuneyds if cuneyd.ID == ID)
+        return str(next(cuneyd for cuneyd in self.cuneyds if cuneyd.ID == ID))
 
     def draw_cuneyd(self,cuneyd,color):
-    	x = cuneyd.x + self.w/2
-    	y = cuneyd.y + self.h/2
+    	x = cuneyd.x + self.w / 2
+    	y = self.h / 2 - cuneyd.y
     	t = cuneyd.t
     	scale = 10
     	thickness = 7*cuneyd.p
