@@ -27,7 +27,8 @@ def create_cuneyd():
 
 @app.route('/update_cuneyd', methods = ["POST"])
 def update_cuneyd():
-    print request.json.ID
+    print request.json
+    print request.json["ID"]
     return "NYI"
 
 @app.route('/update_point', methods = ["POST"])

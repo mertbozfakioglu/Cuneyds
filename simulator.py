@@ -46,7 +46,7 @@ class Simulator(object):
     def add_cuneyd(self,cuneyd):
     	self.cuneyds.append(cuneyd)
 
-    def update_cuneyd(self, ID, x = 0, y = 0, t = 0, N_ID = 0, p = 0.5):
+    def update_cuneyd(self, ID, x = None, y = None, t = None, N_ID = None, p = 0.5):
         cuneyd = next(cuneyd for cuneyd in self.cuneyds if cuneyd.ID == ID)
         print cuneyd
         cuneyd.set(x,y,t,N_ID,p)
