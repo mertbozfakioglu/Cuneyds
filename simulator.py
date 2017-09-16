@@ -3,8 +3,6 @@ import cuneyd
 import math
 import point
 
-#TO-DO: ADD ALPHA VALUES INSTEAD OF THICKNESS, ADD ADJUST_SIZE FUNCTION, ADD UI (SELECTING SPECIFIC CUNEYDS), ADD GRID
-
 class Simulator(object):
 
     colors = [(255,0,0),(0,255,0),(0,0,255),(255,255,0),(0,255,255),
@@ -40,15 +38,15 @@ class Simulator(object):
     	self.legand()
     	pygame.display.update()
 
-    def create_cuneyd(self, x = 0, y = 0, t = 0, ID = 0, p = 0):
-    	self.cuneyds.append(cuneyd.Cuneyd(x,y,t,ID,p))
+    def create_cuneyd(self, x = 0, y = 0, th = 0, ID = 0, p = 0):
+    	self.cuneyds.append(cuneyd.Cuneyd(x,y,th,ID,p))
 
     def add_cuneyd(self,cuneyd):
     	self.cuneyds.append(cuneyd)
 
-    def update_cuneyd(self, ID, x = None, y = None, t = None, N_ID = None, p = 0.5):
+    def update_cuneyd(self, ID, x = None, y = None, th = None, N_ID = None, p = 0.5):
         cuneyd = next(cuneyd for cuneyd in self.cuneyds if cuneyd.ID == ID)
-        cuneyd.set(x,y,t,N_ID,p)
+        cuneyd.set(x,y,th,N_ID,p)
         return str(cuneyd)
 
     def print_cuneyd(self, ID):
@@ -57,11 +55,11 @@ class Simulator(object):
     def draw_cuneyd(self,cuneyd,color):
     	x = cuneyd.x + self.w / 2
     	y = self.h / 2 - cuneyd.y
-    	t = cuneyd.t
+    	th = cuneyd.th
     	scale = 10
     	thickness = 7*cuneyd.p
         def turn(x,y): 
-            return (x*math.cos(t) - y*math.sin(t), x*math.sin(t) + y*math.cos(t))
+            return (x*math.cos(th) - y*math.sin(th), x*math.sin(th) + y*math.cos(th))
         c1,c2,c3 = turn(-1.5*scale,-1*scale), turn(0*scale,2*scale), turn(1.5*scale,-1*scale)
        	pygame.draw.lines(self.screen, color, True, [(c1[0]+x,c1[1]+y),(c2[0]+x,c2[1]+y),(c3[0]+x,c3[1]+y)], int(thickness))
     	    #pygame.draw.circle(self.screen, color, (x,y), scale, 2)
@@ -110,8 +108,8 @@ class Simulator(object):
             text = self.def_font.render('ID: '+str(self.cuneyds[i].ID), False, self.colors[i%len(self.colors)])
 	    self.screen.blit(text,(0,y_pos))
 	    y_pos+=20
-            pos_str = str((self.cuneyds[i].x,self.cuneyds[i].y,self.cuneyds[i].t,self.cuneyds[i].p))
-	    text = self.def_font.render('x,y,t,p: '+pos_str, False, self.colors[i%len(self.colors)])
+            pos_str = str((self.cuneyds[i].x,self.cuneyds[i].y,self.cuneyds[i].th,self.cuneyds[i].p))
+	    text = self.def_font.render('x,y,th,p: '+pos_str, False, self.colors[i%len(self.colors)])
 	    self.screen.blit(text,(0,y_pos))
 	    y_pos+=30
 
