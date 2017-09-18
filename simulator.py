@@ -3,6 +3,8 @@ import cuneyd
 import math
 import point
 
+#TO-DO: CALCULATE COORDINATES W/ RESPECT TO CENTRAL ORIGIN
+
 class Simulator(object):
 
     colors = [(255,0,0),(0,255,0),(0,0,255),(255,255,0),(0,255,255),

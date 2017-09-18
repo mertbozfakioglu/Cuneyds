@@ -10,9 +10,8 @@ class CuneydBot(object):
         self.p = p
         self.sensors = []
     def diff_drive(self,v,w):
-        #CHECK MATH
-        x = math.tan(w*t)*v*t
-        y = v*t
+        x = math.sin(w*t)*v*t
+        y = math.cos(w*t)*v*t
         return (x,y)
 
     def noisefy(self,data,percent_error):
@@ -33,9 +32,9 @@ class CuneydBot(object):
             dx,dy = diff_drive(v,w)
             x += dx
             y += dy
-        #write the update dunction MATHMATHIHHICALLYY
-        #self.x =
-        #self.y =
+        #update coordinates
+        self.x = x*math.cos(self,th) - y*math.sin(self.th)
+        self.y = x*math.sin(self.th) + y*math.cos(self,th) 
 
 
 
